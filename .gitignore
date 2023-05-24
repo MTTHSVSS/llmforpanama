@@ -158,3 +158,47 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+#directories
+
+data/raw
+
+# Root level files
+data/raw/Addresses.csv
+data/raw/Entities.csv
+data/raw/Intermediaries.csv
+data/raw/Officers.csv
+data/raw/all_edges.csv
+data/raw/bahamas_leaks.edges.csv
+data/raw/bahamas_leaks.nodes.address.csv
+data/raw/bahamas_leaks.nodes.entity.csv
+data/raw/bahamas_leaks.nodes.intermediary.csv
+data/raw/bahamas_leaks.nodes.officer.csv
+data/raw/bahamas_leaks.nodes.other.csv
+data/raw/offshore_leaks.edges.csv
+data/raw/offshore_leaks.nodes.address.csv
+data/raw/offshore_leaks.nodes.entity.csv
+data/raw/offshore_leaks.nodes.intermediary.csv
+data/raw/offshore_leaks.nodes.officer.csv
+data/raw/offshore_leaks.nodes.other.csv
+data/raw/panama_papers.edges.csv
+data/raw/panama_papers.nodes.address.csv
+data/raw/panama_papers.nodes.entity.csv
+data/raw/panama_papers.nodes.intermediary.csv
+data/raw/panama_papers.nodes.officer.csv
+data/raw/panama_papers.nodes.other.csv
+data/raw/paradise_papers.edges.csv
+data/raw/paradise_papers.nodes.address.csv
+data/raw/paradise_papers.nodes.entity.csv
+data/raw/paradise_papers.nodes.intermediary.csv
+data/raw/paradise_papers.nodes.officer.csv
+data/raw/paradise_papers.nodes.other.csv
+
+# Folders with .csv files
+data/raw/csv_bahamas_leaks.2017-11-17/*
+data/raw/csv_offshore_leaks.2017-11-17/*
+data/raw/csv_panama_papers.2017-11-17/*
+data/raw/csv_paradise_papers.2017-11-17/*
+
+#ZIP File
+data/raw/paradisepanamapapers.zip
