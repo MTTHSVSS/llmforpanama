@@ -10,7 +10,7 @@ for file_name in file_names:
         df = pd.read_csv(file_path)
         
         # Identify missing values in the DataFrame
-        missing_values = df.isnull().sum()
+        missing_values = df.isnull().sum() /df.shape[0]
         
         # Print the number of missing values for each column
         print(f"Missing values in {file_name}:")
