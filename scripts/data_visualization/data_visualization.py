@@ -17,4 +17,4 @@ plt.xlabel('Source')
 plt.ylabel('Count')
 plt.xticks(rotation=90)
 
-plt.show()
+plt.savefig('/workspaces/llmforpanama/scripts/data_visualization/plots')
