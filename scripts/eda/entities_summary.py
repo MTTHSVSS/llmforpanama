@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # specify your filename
 filename = "/workspaces/llmforpanama/data/raw/Entities.csv"
@@ -36,3 +37,30 @@ print("Entity status distribution: \n", status_counts)
 print(f"Incorporation Date Range: {incorporation_date_range[0]} to {incorporation_date_range[1]}")
 print(f"Inactivation Date Range: {inactivation_date_range[0]} to {inactivation_date_range[1]}")
 print(f"Dormancy Date Range: {dorm_date_range[0]} to {dorm_date_range[1]}")
+
+# Filter the jurisdictions with a count of 10,000 or more
+filtered_jurisdiction_distribution = jurisdiction_distribution[jurisdiction_distribution >= 10000]
+
+# Plot the filtered distribution of jurisdictions
+plt.figure(figsize=(10, 6))
+filtered_jurisdiction_distribution.plot(kind='bar')
+plt.title('Distribution of Jurisdictions with Count >= 10,000')
+plt.xlabel('Jurisdiction')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.savefig('jurisdiction_distribution_barplot.png')  # Save the plot as a .png file
+plt.show()
+
+# Group data by jurisdiction and count the number of entities
+grouped_jurisdiction = df_entities.groupby('jurisdiction').size()
+
+# Convert to DataFrame for compatibility with pandas boxplot
+grouped_df = grouped_jurisdiction.reset_index(name='count')
+
+# Create a box plot
+plt.figure(figsize=(10, 6))  # Optional: specify the size of the plot
+grouped_df['count'].plot(kind='box')
+plt.title('Boxplot of Entity Counts per Jurisdiction')
+plt.ylabel('Count')
+plt.savefig('jurisdiction_distribution_boxplot.png')  # Save the plot as a .png file
+plt.show()
