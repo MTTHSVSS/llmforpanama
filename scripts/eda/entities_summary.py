@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 # specify your filename
 filename = "/workspaces/llmforpanama/data/raw/Entities.csv"
@@ -63,4 +64,21 @@ grouped_df['count'].plot(kind='box')
 plt.title('Boxplot of Entity Counts per Jurisdiction')
 plt.ylabel('Count')
 plt.savefig('jurisdiction_distribution_boxplot.png')  # Save the plot as a .png file
+plt.show()
+
+# Convert incoperation date to datetime format
+df_entities['incorporation_date'] = pd.to_datetime(df_entities['incorperation_date'])
+
+# Calculate the number of days since incorporation
+df_entities['days_since_incorporation'] = (datetime.now() - df_entities['incorporation_date'])
+
+# Encoding 'status' to numerical values
+df_entities['status_encoded'] = df_entities['status'].map({'Active': 1, 'Inactive': 0}) # Add more statuses as required
+
+# Create scatter plot
+plt.scatter(df['days_since_incorporation'], df['status_encoded'])
+plt.xlabel('Number of Days Since Incorporation')
+plt.ylabel('Status')
+plt.title('Scatter Plot of Number of Days Since Incorporation vs Status')
+plt.savefig('incorporation_date_scatterplot.png')
 plt.show()
