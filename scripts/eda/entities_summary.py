@@ -67,16 +67,22 @@ plt.savefig('jurisdiction_distribution_boxplot.png')  # Save the plot as a .png 
 plt.show()
 
 # Convert incoperation date to datetime format
-df_entities['incorporation_date'] = pd.to_datetime(df_entities['incorperation_date'])
+df_entities['incorporation_date'] = pd.to_datetime(df_entities['incorporation_date'])
 
 # Calculate the number of days since incorporation
-df_entities['days_since_incorporation'] = (datetime.now() - df_entities['incorporation_date'])
+df_entities['days_since_incorporation'] = (datetime.now() - df_entities['incorporation_date']).dt.days
+
+# Fill NaN values with 0 before converting to integers
+df_entities['days_since_incorporation'] = df_entities['days_since_incorporation'].fillna(0).astype(int)
+
+# Make sure it's in integer format
+df_entities['days_since_incorporation'] = df_entities['days_since_incorporation'].astype(int)
 
 # Encoding 'status' to numerical values
 df_entities['status_encoded'] = df_entities['status'].map({'Active': 1, 'Inactive': 0}) # Add more statuses as required
 
 # Create scatter plot
-plt.scatter(df['days_since_incorporation'], df['status_encoded'])
+plt.scatter(df_entities['days_since_incorporation'], df_entities['status_encoded'])
 plt.xlabel('Number of Days Since Incorporation')
 plt.ylabel('Status')
 plt.title('Scatter Plot of Number of Days Since Incorporation vs Status')
