@@ -88,3 +88,6 @@ plt.ylabel('Status')
 plt.title('Scatter Plot of Number of Days Since Incorporation vs Status')
 plt.savefig('incorporation_date_scatterplot.png')
 plt.show()
+
+correlation = df_entities['days_since_incorporation'].corr(df_entities['status_encoded'])
+print(f"The correlation between days_since_incorporation and status_encoded is {correlation}")
