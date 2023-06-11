@@ -14,17 +14,17 @@ stop_words = set(stopwords.words('english'))
 stemmer = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
 
-df = pd.read_csv('/workspaces/llmforpanama/data/raw/Entities.csv')
+df = pd.read_csv('/workspaces/llmforpanama/data/raw/Entities.csv', low_memory=False)
 
 # Select a small subset of data for this exercise
 subset_df = df.sample(n=1000)
 
-# Apply punctuation removal
-subset_df['no_punctuation'] = subset_df['name'].apply(lambda x: ''.join([char for char in x if char not in string.punctuation]))
+# Apply text normalization: convert to lowercase and remove punctuation
+subset_df['normalized'] = subset_df['name'].apply(lambda x: ''.join([char for char in str(x).lower() if char not in string.punctuation]))
 
 # Apply tokenization, stopswords removal, stemming and lemmatization
-subset_df['tokens'] = subset_df['no_punctuation'].apply(nltk.word_tokenize)
-subset_df['filtered_tokens'] = subset_df['tokens'].apply(lambda tokens: [token for token in tokens if token.lower() not in stop_words])
+subset_df['tokens'] = subset_df['normalized'].apply(nltk.word_tokenize)
+subset_df['filtered_tokens'] = subset_df['tokens'].apply(lambda tokens: [token for token in tokens if token not in stop_words])
 subset_df['stemmed'] = subset_df['filtered_tokens'].apply(lambda tokens: [stemmer.stem(token) for token in tokens])
 subset_df['lemmatized'] = subset_df['filtered_tokens'].apply(lambda tokens: [lemmatizer.lemmatize(token) for token in tokens])
 
