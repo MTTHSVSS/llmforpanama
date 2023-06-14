@@ -33,5 +33,5 @@ def preprocess_data():
     # Apply POS tagging
     subset_df['pos_tags'] = subset_df['tokens'].apply(nltk.pos_tag)
 
-    # Print dataframe
-    print(subset_df)
+    # Return the dataframe
+    return subset_df
