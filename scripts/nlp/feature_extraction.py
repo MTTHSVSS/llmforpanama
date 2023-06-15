@@ -16,8 +16,7 @@ X = vectorizer.fit_transform(df['joined_tokens'])
 print(vectorizer.get_feature_names_out())
 print(X.toarray())
 
-
-
-
-
-
+# Convert this matrix back to a DataFrame with labeled columns
+feature_names = vectorizer.get_feature_names_out()
+df_bow = pd.DataFrame(data=X.toarray(), columns=feature_names)
+print(df_bow.head())
