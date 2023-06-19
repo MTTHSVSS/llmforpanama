@@ -12,7 +12,7 @@ df['joined_tokens'] = df['tokens'].apply(' '.join)
 vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(df['joined_tokens'])
 
-# Print the feature names and the BoW representation
+# Print the feature names and the Bag-of-Words representation
 print(vectorizer.get_feature_names_out())
 print(X.toarray())
 

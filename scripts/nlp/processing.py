@@ -35,3 +35,9 @@ def preprocess_data():
 
     # Return the dataframe
     return subset_df
+
+# Call a function and assign it a value
+df_preprocessed = preprocess_data()
+
+# Join the tokenized words back into a string on the original DataFrame
+df_preprocessed['joined_tokens'] = df_preprocessed['tokens'].apply(' '.join)

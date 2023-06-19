@@ -1,6 +1,9 @@
-from feature_extraction import df_bow
+from processing import df_preprocessed
+from sklearn.feature_extraction.text import CountVectorizer
 
-# Join tokens into string
-df['text'] = df_bow['tokens'].apply(' '.join)
+# Then, perform the TF-IDF transformation
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer()
 
-print(df)
+# Apply the vectorizer
+X = vectorizer.fit_transform(df_preprocessed['joined_tokens'])
